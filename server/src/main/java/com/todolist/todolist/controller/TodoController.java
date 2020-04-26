@@ -7,7 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -23,15 +24,15 @@ public class TodoController {
     private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
 
     @PostMapping("/todo/find")
-    public Todo findTodoByTitle(@RequestParam("title") String title){
-        logger.debug(title);
-        return mongoTodoService.findTodoByTitle(title);
+    public List<Todo> findTodoByTitle(@RequestBody Map<String, Object> request){
+        String title = (String)request.get("title");
+        return mongoTodoService.findTodosByKeyWords(title);
     }
 
     @PostMapping("/todo/add")
-    public String addTodo(@RequestBody Map<String, Object> request){
-        mongoTodoService.save(new Todo((String)request.get("title"), (String)request.get("note"), new Date()));
-        return "Save!";
+    public List<Todo> addTodo(@RequestBody Map<String, Object> request) throws ParseException {
+        mongoTodoService.save(new Todo((String)request.get("title"), (String)request.get("note"), (String)request.get("date")));
+        return getAllTodo();
     }
 
     @GetMapping("/todo/all")
@@ -40,14 +41,22 @@ public class TodoController {
     }
 
     @PostMapping("/todo/delete")
-    public String deleteTodo(@RequestParam("title") String title){
+    public List<Todo> deleteTodo(@RequestBody Map<String, Object> request){
+        String id = (String)request.get("id");
         Todo deleted = null;
-        deleted = mongoTodoService.findTodoByTitle(title);
+        deleted = mongoTodoService.findTodoById(id);
         if (deleted != null){
-            mongoTodoService.deleteByTitle(title);
-            return "Success";
+            mongoTodoService.deleteTodoById(id);
         }
-        return "Fail";
+        return getAllTodo();
+    }
+
+    @PostMapping("/todo/update")
+    public String updateTodo(@RequestBody List<Todo> todos){
+        for (Todo todo: todos) {
+            mongoTodoService.updateTodo(todo);
+        }
+        return "Updated";
     }
 
 

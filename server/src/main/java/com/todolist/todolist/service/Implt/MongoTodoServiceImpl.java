@@ -16,15 +16,15 @@ public class MongoTodoServiceImpl implements MongoTodoService {
 
 
     @Override
-    public Todo findTodoByTitle(String title){
+    public List<Todo> findTodosByKeyWords(String title){
 
-        return mongoTodoRepository.findByTitle(title);
+        return mongoTodoRepository.findByTitleContains(title);
     }
 
     @Override
-    public void deleteByTitle(String title){
+    public void deleteTodoById(String id){
 
-        mongoTodoRepository.deleteByTitle(title);
+        mongoTodoRepository.deleteById(id);
     }
 
     @Override
@@ -36,5 +36,20 @@ public class MongoTodoServiceImpl implements MongoTodoService {
     public List<Todo> getAllTodo(){
 
         return mongoTodoRepository.findAll();
+    }
+
+    @Override
+    public Todo findTodoByTitle(String title){
+        return mongoTodoRepository.findByTitle(title);
+    }
+
+    @Override
+    public void updateTodo(Todo todo){
+        mongoTodoRepository.save(todo);
+    }
+
+    @Override
+    public Todo findTodoById(String id){
+        return mongoTodoRepository.findById(id);
     }
 }

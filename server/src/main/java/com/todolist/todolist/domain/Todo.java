@@ -1,5 +1,6 @@
 package com.todolist.todolist.domain;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Entity;
@@ -14,27 +15,29 @@ public class Todo {
     @Id
     @GeneratedValue
     //MongoDB must use ObjectId or String or BigInteger
-    private BigInteger id;
+    private String id;
     private String title;
     private String note;
-    private Date scheduleTime;
+    private String scheduleTime;
+    private Boolean completed;
 
     public Todo(){
 
     }
 
-    public Todo(String title, String note, Date scheduleTime){
+    public Todo(String title, String note, String scheduleTime){
         this.title = title;
         this.note = note;
         this.scheduleTime = scheduleTime;
+        this.completed = false;
     }
 
 
-    public BigInteger getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -54,12 +57,20 @@ public class Todo {
         this.note = note;
     }
 
-    public Date getScheduleTime() {
+    public String getScheduleTime() {
         return scheduleTime;
     }
 
-    public void setScheduleTime(Date scheduleTime) {
+    public void setScheduleTime(String scheduleTime) {
         this.scheduleTime = scheduleTime;
+    }
+
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
     }
 
 }

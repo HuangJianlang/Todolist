@@ -9,9 +9,15 @@ import java.util.List;
 @Service
 public interface MongoTodoService {
 
+    List<Todo> findTodosByKeyWords(String title);
+
+    Todo findTodoById(String id);
+
     Todo findTodoByTitle(String title);
 
-    void deleteByTitle(String title);
+    void deleteTodoById(String id);
+
+    void updateTodo(Todo todo);
 
     void save(Todo todo);
 

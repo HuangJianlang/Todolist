@@ -9,9 +9,13 @@ import java.util.List;
 
 public interface MongoTodoRepository extends MongoRepository<Todo, BigInteger> {
 
+    Todo findById(String id);
+
+    List<Todo> findByTitleContains(String title);
+
     Todo findByTitle(String title);
 
-    void deleteByTitle(String title);
+    void deleteById(String id);
 
     Todo insert(Todo todo);
 

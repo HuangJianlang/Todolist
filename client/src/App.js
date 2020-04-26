@@ -1,26 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TodoComponent from "./components/TodoComponent";
+import ChangeTodoComponent from "./components/ChangeTodoComponent";
+import {connect} from "react-redux";
+import {findAll} from "./actions/todo/todoActions";
+import UpdateTodoComponent from "./components/UpdateTodoComponent";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import { withStyles } from "@material-ui/styles";
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+import AddTodoComponent from "./components/AddTodoComponent";
+
+const styles = (theme) => ({
+    root: {
+        backgroundColor: "#FFF",
+        width: 500,
+        position: 'relative',
+        minHeight: 200,
+    },
+})
+class App extends React.Component {
+    componentDidMount() {
+        this.props.findAll()
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <CssBaseline />
+                <Container maxWidth="sm">
+                    <div className={this.props.root}>
+                        {/*<ChangeTodoComponent/>*/}
+                        <TodoComponent/>
+                        {/*<UpdateTodoComponent />*/}
+                        <AddTodoComponent />
+                    </div>
+                </Container>
+            </React.Fragment>
+        )
+    }
 }
 
-export default App;
+//dispatch ALWAYS need actionCreator
+const mapDispatchToProps = (dispatch) => ({
+    findAll: () => dispatch(findAll())
+});
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(App));
