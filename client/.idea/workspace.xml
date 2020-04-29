@@ -2,30 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77d7040b-9659-4ec1-b2fc-43d76ed2d110" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actions/todo/actionType.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actions/todo/todoActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AddTodoComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ChangeTodoComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SearchComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TodoComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UpdateTodoComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/todoReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/EditForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/main/java/com/todolist/todolist/controller/TodoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/java/com/todolist/todolist/controller/TodoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/main/java/com/todolist/todolist/domain/Todo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/java/com/todolist/todolist/domain/Todo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/main/java/com/todolist/todolist/repository/mongo/MongoTodoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/java/com/todolist/todolist/repository/mongo/MongoTodoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/main/java/com/todolist/todolist/service/Implt/MongoTodoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/java/com/todolist/todolist/service/Implt/MongoTodoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/main/java/com/todolist/todolist/service/MongoTodoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/java/com/todolist/todolist/service/MongoTodoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/todo/todoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/todo/todoActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddTodoComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTodoComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TodoComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TodoComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/todoReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/todoReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1587711813703</updated>
       <workItem from="1587711816671" duration="31000" />
-      <workItem from="1587712376021" duration="46937000" />
+      <workItem from="1587712376021" duration="63429000" />
     </task>
     <servers />
   </component>

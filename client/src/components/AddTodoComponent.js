@@ -1,34 +1,22 @@
 import React from "react";
 
 //Material UI
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import { withStyles } from "@material-ui/styles";
-import { Modal, TextField, Button } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import {addTodo} from "../actions/todo/todoActions";
 import { connect } from "react-redux";
+import EditForm from "./EditForm";
+import {Modal} from "@material-ui/core";
 
 const styles = (theme) => ({
     root:{
         margin: "10px 0 0 0"
-    },
-    paper:{
-        position: "relative",
-        width: 300,
-        height: 300,
-        backgroundColor:"#FFF"
-    },
-    formItem:{
-        width: 150
     }
 });
 
 class AddTodoComponent extends React.Component{
     state = {
-        date: new Date(),
         isOpen: false
     };
 
@@ -41,8 +29,6 @@ class AddTodoComponent extends React.Component{
     }
 
     render() {
-        let titleInput;
-        let noteInput;
         return (
             <div className={this.props.classes.root}>
                 <Fab size="small" color="primary" aria-label="Add Todo" onClick={() => this.onHandleClickAddButton()}>
@@ -55,49 +41,13 @@ class AddTodoComponent extends React.Component{
                     aria-describedby="simple-modal-description"
                     style={{display:'flex',alignItems:'center',justifyContent:'center'}}
                 >
-                    <form
-                        className={this.props.classes.paper}
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            this.props.onHandleAdd(titleInput.value, noteInput.value, this.state.date)
-                            titleInput.value = ""
-                            noteInput.value = ""}}>
-                        <Grid container direction="column" alignItems="center" justify="center">
-                            <Grid container direction="column" alignItems="center" spacing={5}>
-                                <Grid item>
-                                    <TextField
-                                        id={"todo-titile"}
-                                        label={"Title"}
-                                        inputRef={node => titleInput = node}
-                                        className={this.props.classes.formItem}
-                                        style={{margin: "10px 0 -20px 0"}}
-                                    />
-                                </Grid>
-                                <Grid item>
-                                    <TextField
-                                        id={"todo-note"}
-                                        label={"Note"}
-                                        inputRef={node => noteInput = node}
-                                        className={this.props.classes.formItem}
-                                    />
-                                </Grid>
-                                <Grid item>
-                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                        <KeyboardDatePicker
-                                            onChange={(date) => this.setState({ date })}
-                                            value={this.state.date}
-                                            className={this.props.classes.formItem}
-                                        />
-                                    </MuiPickersUtilsProvider>
-                                </Grid>
-                                <Grid item>
-                                    <Button type="submit" color="primary" variant="contained">
-                                        Add Todo
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </form>
+                    <EditForm
+                        titleInit = {""}
+                        noteInit = {""}
+                        dateInit = {new Date()}
+                        onHandleSubmit = {this.props.onHandleAdd}
+                        onHandleClose={() => this.onHandleClose()}
+                        buttonName={"Add Todo"}/>
                 </Modal>
             </div>
         );

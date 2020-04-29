@@ -2,7 +2,6 @@ import axios from "axios";
 import {ADD_TODO, DELETE_TODO, FIND_TODO, UPDATE_TODO, FIND_ALL, TRIGGER_TODO} from "./actionType";
 
 export const addTodo = (title, note, date) => async (dispatch) => {
-    console.log(date.toLocaleDateString())
     const response = await axios.post(
         "/api/todo/add", {
             title: title,
@@ -39,12 +38,10 @@ export const findAll = () => async (dispatch) => {
     })
 }
 
-export const updateTodo = (todos) => async (dispatch) => {
-    const res = await axios.post("/api/todo/update", todos)
-    dispatch({
-        type: UPDATE_TODO
-    })
-}
+export const updateTodo = (todo) => ({
+    type: UPDATE_TODO,
+    todo: todo
+})
 
 export const triggerTodo = (id) => ({
     type: TRIGGER_TODO,

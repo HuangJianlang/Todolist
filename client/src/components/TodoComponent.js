@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {addTodo, deleteTodo, findTodo, triggerTodo} from "../actions/todo/todoActions";
+import {updateTodo, deleteTodo, findTodo, triggerTodo} from "../actions/todo/todoActions";
 
 //Material UI
 import Grid from "@material-ui/core/Grid";
@@ -12,13 +12,39 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { TextField } from "@material-ui/core";
+import DateFnsUtils from "@date-io/date-fns";
+import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 
 class TodoComponent extends React.Component{
 
+    state = {
+        isOpen: false,
+        todoInput: {},
+        todoDate: {}
+    }
+
+    onHandleOpen() {
+        this.setState({isOpen: true})
+    }
+
+    onHandleClose() {
+        this.setState({isOpen: false})
+    }
+
+    onHandleInputChange(e, todo){
+        const todoInput = this.state.todoInput;
+        todoInput[todo.id] = e.target.value;
+        todo.note = e.target.value;
+        this.setState({todoInput: todoInput}, () => this.props.onHandleUpdate(todo));
+    }
+
     render() {
         return(<div className={{width: '100%'}}>
-                {this.props.todos.map((todo) => (
-                    <ExpansionPanel key={todo.id}>
+                {this.props.todos.map((todo) => {
+                    this.state.todoInput[todo.id] = todo.note;
+                    return(
+                        <ExpansionPanel key={todo.id}>
                         <ExpansionPanelSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-label="Expand"
@@ -38,21 +64,31 @@ class TodoComponent extends React.Component{
                                 <Grid item xs={6}>
                                     <Grid container direction="column" alignItems="flex-start" spacing={2}>
                                         <Grid item>
-                                            <Typography variant="h6" color="textPrimary">
-                                                Note: {todo.note}
-                                            </Typography>
+                                            <TextField
+                                                style={{margin: "-15px 0 0 0", width:200}}
+                                                label={"Note"}
+                                                id={todo.id}
+                                                value={this.state.todoInput[todo.id]}
+                                                onChange={(e) => this.onHandleInputChange(e, todo)}
+                                            />
                                         </Grid>
                                         <Grid item>
-                                            <Typography variant="h6" color="textPrimary">
-                                                Due: {todo.scheduleTime}
-                                            </Typography>
+                                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                                <KeyboardDatePicker
+                                                    style={{width:200}}
+                                                />
+                                            </MuiPickersUtilsProvider>
                                         </Grid>
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Grid container direction="column" alignItems="flex-end" spacing={2}>
                                         <Grid item>
-                                            <Button variant="contained" color="primary" style={{width:60}}>
+                                            <Button
+                                                onClick={() => this.onHandleOpen()}
+                                                variant="contained"
+                                                color="primary"
+                                                style={{width:60}}>
                                                 Edit
                                             </Button>
                                         </Grid>
@@ -69,7 +105,7 @@ class TodoComponent extends React.Component{
                             </Grid>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
-                ))}
+                )})}
             </div>
         )
     }
@@ -86,7 +122,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onHandleDelete: (id) => dispatch(deleteTodo(id)),
-        onHandleTrigger: (id) => dispatch(triggerTodo(id))
+        onHandleTrigger: (id) => dispatch(triggerTodo(id)),
+        onHandleUpdate: (todo) => dispatch(updateTodo(todo))
     }
 }
 

@@ -17,6 +17,16 @@ const todoReducer = (state=DEFAULT_STATE, action) => {
                 }
             }
             return { todos: copyTodos }
+
+        case actions.UPDATE_TODO:
+            const todos = state.todos.map(todo => {
+                if (todo.id == action.todo.id){
+                    return action.todo
+                }
+                return todo
+            })
+            return { todos: todos }
+
         default:
             return state
     }

@@ -1,9 +1,8 @@
 import React from 'react';
 import TodoComponent from "./components/TodoComponent";
-import ChangeTodoComponent from "./components/ChangeTodoComponent";
 import {connect} from "react-redux";
 import {findAll} from "./actions/todo/todoActions";
-import UpdateTodoComponent from "./components/UpdateTodoComponent";
+import SearchComponent from "./components/SearchComponent";
 
 
 import { withStyles } from "@material-ui/styles";
@@ -16,9 +15,10 @@ const styles = (theme) => ({
         backgroundColor: "#FFF",
         width: 500,
         position: 'relative',
-        minHeight: 200,
+        minHeight: 200
     },
 })
+
 class App extends React.Component {
     componentDidMount() {
         this.props.findAll()
@@ -28,14 +28,13 @@ class App extends React.Component {
         return (
             <React.Fragment>
                 <CssBaseline />
-                <Container maxWidth="sm">
-                    <div className={this.props.root}>
-                        {/*<ChangeTodoComponent/>*/}
-                        <TodoComponent/>
-                        {/*<UpdateTodoComponent />*/}
-                        <AddTodoComponent />
-                    </div>
-                </Container>
+                    <Container maxWidth="sm">
+                        <div className={this.props.root}>
+                            <SearchComponent />
+                            <TodoComponent/>
+                            <AddTodoComponent />
+                        </div>
+                    </Container>
             </React.Fragment>
         )
     }
